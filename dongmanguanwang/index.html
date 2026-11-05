@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动漫官网首页-动漫官网首页在线观看_新番更新_热门动画推荐</title>
+<meta name="description" content="动漫官网首页是动漫爱好者的信息与服务入口，汇集新番更新、热门动画推荐、番剧分类浏览与作品资料，帮助访客快速找到想看的动画并了解最新动态。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315182b'/%3E%3Ccircle cx='32' cy='30' r='13' fill='none' stroke='%23ff6b8b' stroke-width='4'/%3E%3Ccircle cx='27' cy='28' r='2.6' fill='%23ffd166'/%3E%3Ccircle cx='37' cy='28' r='2.6' fill='%23ffd166'/%3E%3Cpath d='M26 37c4 3 8 3 12 0' stroke='%23ff6b8b' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M32 6v6M32 52v6M6 30h6M52 30h6' stroke='%2377e0d0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#15182b;
+    --ink-soft:#3b4060;
+    --paper:#f7f7fb;
+    --card:#ffffff;
+    --line:#e6e7f0;
+    --pink:#ff6b8b;
+    --pink-deep:#e2476b;
+    --mint:#2fb9a8;
+    --gold:#f0b429;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:min(1140px,92%);margin:0 auto;}
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;gap:24px;padding:12px 0;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:.5px;white-space:nowrap;}
+  .logo .mark{width:38px;height:38px;flex:none;}
+  nav.main{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.main a{
+    padding:7px 12px;border-radius:999px;font-size:14.5px;color:var(--ink-soft);
+    transition:background .2s,color .2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{background:#fdf0f3;color:var(--pink-deep);outline:none;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 22px;border-radius:999px;font-size:15px;font-weight:700;
+    background:var(--pink);color:#fff;border:2px solid var(--pink);
+    transition:transform .15s,background .2s,box-shadow .2s;cursor:pointer;
+  }
+  .btn:hover{background:var(--pink-deep);border-color:var(--pink-deep);transform:translateY(-2px);box-shadow:0 8px 20px rgba(226,71,107,.28);}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn.ghost:hover{background:#fff;color:var(--pink-deep);border-color:var(--pink);box-shadow:none;}
+  .btn[aria-disabled="true"]{pointer-events:none;opacity:.92;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(900px 420px at 86% -10%,rgba(255,107,139,.20),transparent 70%),
+      radial-gradient(700px 380px at 4% 110%,rgba(47,185,168,.16),transparent 70%),
+      #fff;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center;
+    padding:60px 0 66px;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:700;letter-spacing:1px;color:var(--mint);
+    background:#eaf9f6;border:1px solid #cdeee8;border-radius:999px;padding:5px 14px;margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(30px,4.4vw,48px);
+    line-height:1.24;margin:0 0 18px;letter-spacing:.5px;font-weight:900;
+  }
+  h1 .hl{
+    background:linear-gradient(transparent 62%,rgba(255,107,139,.32) 62%);
+    padding:0 2px;
+  }
+  .lead{font-size:16.5px;color:var(--ink-soft);margin:0 0 26px;max-width:34em;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px;}
+  .hero-facts{display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft);}
+  .hero-facts b{display:block;font-size:22px;color:var(--ink);line-height:1.3;}
+  .hero-art{
+    background:linear-gradient(160deg,#1d2140,#2a2f5c);
+    border-radius:26px;padding:22px;position:relative;overflow:hidden;
+    box-shadow:0 24px 50px -22px rgba(21,24,43,.5);
+  }
+  .hero-art::after{
+    content:"";position:absolute;inset:auto -40px -60px auto;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(255,107,139,.45),transparent 70%);
+  }
+  .hero-art .tag{
+    position:absolute;top:16px;right:16px;z-index:2;
+    background:var(--gold);color:#15182b;font-size:12px;font-weight:800;
+    padding:4px 10px;border-radius:8px;letter-spacing:.5px;
+  }
+
+  /* ---------- Section basics ---------- */
+  section{padding:62px 0;}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sec-head{margin-bottom:30px;max-width:44em;}
+  .sec-head .eyebrow{
+    font-size:13px;font-weight:800;color:var(--pink-deep);letter-spacing:1.6px;text-transform:uppercase;
+    display:block;margin-bottom:8px;
+  }
+  h2{font-size:clamp(22px,2.6vw,29px);margin:0 0 10px;line-height:1.35;font-weight:800;}
+  .sec-head p{margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  /* ---------- Update board ---------- */
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .upd{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .18s,box-shadow .18s,border-color .18s;
+  }
+  .upd:hover{transform:translateY(-4px);box-shadow:0 16px 32px -18px rgba(21,24,43,.35);border-color:#f3c3cf;}
+  .upd .day{
+    display:inline-flex;align-self:flex-start;font-size:12px;font-weight:800;
+    color:var(--pink-deep);background:#fdeef2;border-radius:6px;padding:2px 9px;letter-spacing:.5px;
+  }
+  .upd h3{margin:0;font-size:17px;font-weight:800;line-height:1.45;}
+  .upd p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .upd .meta{margin-top:auto;font-size:12.5px;color:#8a8fab;display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* ---------- Spotlight ---------- */
+  .spot{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start;}
+  .spot-main{
+    background:linear-gradient(150deg,#fff6f8,#fff 60%);
+    border:1px solid #f6d7df;border-radius:22px;padding:30px;
+  }
+  .spot-main h3{margin:0 0 12px;font-size:23px;line-height:1.4;}
+  .spot-main p{margin:0 0 14px;font-size:15px;color:var(--ink-soft);}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .chip{font-size:12.5px;background:#eef2ff;color:#3b4a8c;border-radius:999px;padding:4px 12px;font-weight:700;}
+  .rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .rank li{
+    display:flex;gap:14px;align-items:flex-start;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;
+  }
+  .rank .no{
+    flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+    font-weight:900;font-size:14px;background:#f1f2f8;color:var(--ink-soft);
+  }
+  .rank li:first-child .no{background:var(--pink);color:#fff;}
+  .rank li:nth-child(2) .no{background:var(--gold);color:#15182b;}
+  .rank strong{display:block;font-size:15px;line-height:1.5;}
+  .rank span{font-size:13px;color:#8a8fab;}
+
+  /* ---------- Catalog ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:26px;}
+  .filters input{
+    flex:1 1 260px;min-width:0;padding:11px 16px;border-radius:999px;
+    border:1px solid var(--line);background:#fff;font-size:14.5px;font-family:inherit;color:var(--ink);
+  }
+  .filters input:focus{outline:2px solid rgba(255,107,139,.35);border-color:var(--pink);}
+  .filters .fbtn{
+    padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;
+    font-size:13.5px;font-weight:700;color:var(--ink-soft);cursor:pointer;font-family:inherit;
+    transition:all .18s;
+  }
+  .filters .fbtn:hover{border-color:var(--pink);color:var(--pink-deep);}
+  .filters .fbtn.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 30px -18px rgba(21,24,43,.35);}
+  .card .thumb{aspect-ratio:16/10;background:#eef0f7;position:relative;}
+  .card .thumb svg{width:100%;height:100%;}
+  .card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;}
+  .card h3{margin:0;font-size:15.5px;font-weight:800;line-height:1.45;}
+  .card p{margin:0;font-size:13px;color:#7c81a0;}
+  .card .tagrow{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap;padding-top:8px;}
+  .card .tagrow em{
+    font-style:normal;font-size:11.5px;background:#f4f5fa;color:#5d6386;border-radius:5px;padding:2px 7px;font-weight:700;
+  }
+  .empty{grid-column:1/-1;text-align:center;color:#8a8fab;font-size:14.5px;padding:40px 0;}
+
+  /* ---------- Guide ---------- */
+  .guide{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+  .step .n{
+    width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    background:#eaf9f6;color:var(--mint);font-weight:900;margin-bottom:14px;
+  }
+  .step h3{margin:0 0 8px;font-size:16.5px;}
+  .step p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:linear-gradient(135deg,#1d2140,#33396b);
+    color:#fff;border-radius:24px;padding:44px 40px;
+    display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:space-between;
+  }
+  .cta h2{color:#fff;margin:0 0 8px;}
+  .cta p{margin:0;color:#c7cbe4;font-size:15px;max-width:36em;}
+  .cta .btn{background:var(--pink);border-color:var(--pink);}
+  .cta .btn:hover{background:#ff85a1;border-color:#ff85a1;}
+
+  /* ---------- Footer ---------- */
+  footer{background:#12152a;color:#9aa0bf;padding:48px 0 30px;margin-top:0;}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;margin-bottom:32px;}
+  footer .logo{color:#fff;margin-bottom:12px;}
+  footer p{font-size:13.5px;margin:0;line-height:1.8;}
+  footer h4{color:#fff;font-size:14px;margin:0 0 12px;letter-spacing:.5px;}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;}
+  footer ul a:hover{color:var(--pink);}
+  .copy{border-top:1px solid #262a45;padding-top:20px;font-size:12.5px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;padding:40px 0 48px;gap:32px;}
+    .hero-art{order:-1;max-width:460px;}
+    .board{grid-template-columns:1fr 1fr;}
+    .spot{grid-template-columns:1fr;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .guide{grid-template-columns:1fr;}
+    .fgrid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    .bar{flex-wrap:wrap;gap:10px;padding:10px 0;}
+    nav.main{margin-left:0;order:3;width:100%;gap:2px;justify-content:flex-start;}
+    nav.main a{padding:6px 10px;font-size:13.5px;}
+    .logo{font-size:16px;}
+    section{padding:44px 0;}
+    .board{grid-template-columns:1fr;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .cta{padding:32px 24px;}
+    .fgrid{grid-template-columns:1fr;}
+    .spot-main{padding:24px;}
+    .hero-facts{gap:18px;}
+  }
+  @media (max-width:420px){
+    .grid{grid-template-columns:1fr;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="动漫官网首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#15182b"/>
+        <circle cx="32" cy="30" r="13" fill="none" stroke="#ff6b8b" stroke-width="4"/>
+        <circle cx="27" cy="28" r="2.6" fill="#ffd166"/>
+        <circle cx="37" cy="28" r="2.6" fill="#ffd166"/>
+        <path d="M26 37c4 3 8 3 12 0" stroke="#ff6b8b" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M32 6v6M32 52v6M6 30h6M52 30h6" stroke="#77e0d0" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      动漫官网首页
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#updates">新番更新</a>
+      <a href="#spotlight">本周焦点</a>
+      <a href="#catalog">番剧分类</a>
+      <a href="#guide">观看指南</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">动画资讯 · 番剧索引 · 观看指引</span>
+        <h1><span class="hl">动漫官网首页</span></h1>
+        <p class="lead">动漫官网首页把新番更新、热门作品与分类索引放在同一处，访客从首屏就能看到本周在播内容和入口，再按类型、题材或关键词逐层筛选，找到想看的动画。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#updates">查看新番更新</a>
+          <a class="btn ghost" href="#catalog">浏览番剧分类</a>
+        </div>
+        <div class="hero-facts">
+          <div><b>7 天</b>更新节奏</div>
+          <div><b>6 类</b>题材分类</div>
+          <div><b>3 步</b>找到想看</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="tag">本周焦点</span>
+        <svg viewBox="0 0 340 260" role="img" aria-label="动漫角色插画：发光屏幕与播放按钮">
+          <defs>
+            <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#3a4080"/>
+              <stop offset="1" stop-color="#5a3f7a"/>
+            </linearGradient>
+            <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff9db3"/>
+              <stop offset="1" stop-color="#ff6b8b"/>
+            </linearGradient>
+          </defs>
+          <rect x="26" y="26" width="288" height="176" rx="16" fill="url(#scr)" opacity=".9"/>
+          <rect x="26" y="26" width="288" height="176" rx="16" fill="none" stroke="#7f86c9" stroke-width="2" opacity=".5"/>
+          <circle cx="170" cy="114" r="30" fill="#15182b" opacity=".55"/>
+          <path d="M162 100l24 14-24 14z" fill="#ffd166"/>
+          <circle cx="92" cy="82" r="4" fill="#77e0d0"/>
+          <circle cx="118" cy="62" r="3" fill="#ffd166"/>
+          <circle cx="248" cy="70" r="4" fill="#ff6b8b"/>
+          <path d="M60 200c14-40 52-62 110-62s96 22 110 62" fill="none" stroke="#ff6b8b" stroke-width="3" opacity=".55"/>
+          <circle cx="170" cy="196" r="20" fill="#ffd9e2"/>
+          <path d="M150 196c0-14 9-24 20-24s20 10 20 24" fill="url(#hair)"/>
+          <circle cx="163" cy="196" r="2.4" fill="#15182b"/>
+          <circle cx="177" cy="196" r="2.4" fill="#15182b"/>
+          <path d="M165 203c3 2 7 2 10 0" stroke="#e2476b" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <rect x="120" y="224" width="100" height="10" rx="5" fill="#3a4080"/>
+          <rect x="150" y="224" width="40" height="10" rx="5" fill="#77e0d0"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Updates -->
+  <section id="updates">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Weekly Updates</span>
+        <h2>新番更新看板</h2>
+        <p>按播出日排列的近期更新条目，每条标注作品名、集数推进与看点，方便对照自己的追番清单。更新看板只做信息汇总，具体播出安排请以官方渠道为准。</p>
+      </div>
+      <div class="board">
+        <article class="upd">
+          <span class="day">周一</span>
+          <h3>奇幻冒险类 · 第 8 话</h3>
+          <p>主角团进入新地图，世界观设定进一步展开，适合从头补看。</p>
+          <div class="meta"><span>冒险</span><span>连载中</span></div>
+        </article>
+        <article class="upd">
+          <span class="day">周三</span>
+          <h3>校园日常类 · 第 5 话</h3>
+          <p>轻喜剧节奏，单集独立剧情，新观众可直接从本集进入。</p>
+          <div class="meta"><span>日常</span><span>轻松</span></div>
+        </article>
+        <article class="upd">
+          <span class="day">周四</span>
+          <h3>科幻机甲类 · 第 11 话</h3>
+          <p>进入中后段转折，战斗分镜密集，建议按顺序观看。</p>
+          <div class="meta"><span>科幻</span><span>剧情向</span></div>
+        </article>
+        <article class="upd">
+          <span class="day">周五</span>
+          <h3>悬疑推理类 · 第 6 话</h3>
+          <p>线索回收的一集，前情回顾较长，适合搭配笔记观看。</p>
+          <div class="meta"><span>悬疑</span><span>推理</span></div>
+        </article>
+        <article class="upd">
+          <span class="day">周六</span>
+          <h3>热血运动类 · 第 9 话</h3>
+          <p>关键比赛段落，节奏紧凑，是本季度讨论度较高的更新。</p>
+          <div class="meta"><span>运动</span><span>热血</span></div>
+        </article>
+        <article class="upd">
+          <span class="day">周日</span>
+          <h3>治愈温情类 · 第 4 话</h3>
+          <p>慢节奏叙事，配乐与画面风格统一，适合放松观看。</p>
+          <div class="meta"><span>治愈</span><span>短篇</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spotlight -->
+  <section id="spotlight" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Spotlight</span>
+        <h2>本周焦点与热度排行</h2>
+        <p>焦点区挑出本周值得关注的一部作品，排行区按站内浏览与收藏情况排序，帮助新访客判断从哪部开始看。热度仅反映页面内互动，不代表作品整体评价。</p>
+      </div>
+      <div class="spot">
+        <div class="spot-main">
+          <div class="chips">
+            <span class="chip">科幻</span>
+            <span class="chip">剧情向</span>
+            <span class="chip">连载中</span>
+          </div>
+          <h3>本周焦点：一部进入中后段的科幻作品</h3>
+          <p>这部作品用较长的铺垫建立世界观，第 11 话开始回收前期伏笔。画面风格偏冷色调，配乐以合成器为主，适合喜欢连续追看的观众。</p>
+          <p>如果你刚接触该题材，建议先看第 1 话与世界观介绍，再从第 10 话接续，能更清楚地理解人物动机与阵营关系。</p>
+          <a class="btn ghost" href="#catalog">在分类中查看同类作品</a>
+        </div>
+        <ol class="rank">
+          <li><span class="no">1</span><div><strong>科幻机甲类 · 第 11 话</strong><span>讨论度上升，本周浏览靠前</span></div></li>
+          <li><span class="no">2</span><div><strong>热血运动类 · 第 9 话</strong><span>关键比赛段落，收藏量增长</span></div></li>
+          <li><span class="no">3</span><div><strong>悬疑推理类 · 第 6 话</strong><span>线索回收，回看比例较高</span></div></li>
+          <li><span class="no">4</span><div><strong>奇幻冒险类 · 第 8 话</strong><span>新地图展开，新观众进入多</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog -->
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Catalog</span>
+        <h2>番剧分类索引</h2>
+        <p>按题材浏览作品，也可以直接输入名称或关键词筛选。列表中的条目均来自站内已收录的作品条目，筛选结果即时显示在下方。</p>
+      </div>
+      <div class="filters" role="search">
+        <input id="q" type="search" placeholder="输入作品名或关键词，例如：科幻、日常" aria-label="搜索番剧">
+        <button class="fbtn on" data-cat="all" type="button">全部</button>
+        <button class="fbtn" data-cat="科幻" type="button">科幻</button>
+        <button class="fbtn" data-cat="奇幻" type="button">奇幻</button>
+        <button class="fbtn" data-cat="日常" type="button">日常</button>
+        <button class="fbtn" data-cat="悬疑" type="button">悬疑</button>
+        <button class="fbtn" data-cat="运动" type="button">运动</button>
+      </div>
+      <div class="grid" id="grid">
+        <article class="card" data-cat="科幻" data-name="星轨回响 科幻机甲">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#e8ecff"/><circle cx="80" cy="70" r="34" fill="#3b4a8c" opacity=".85"/><circle cx="80" cy="70" r="20" fill="#e8ecff"/><path d="M150 150l40-70 40 70z" fill="#5a6bd8" opacity=".7"/><rect x="220" y="60" width="60" height="60" rx="8" fill="#2fb9a8" opacity=".55"/></svg>
+          </div>
+          <div class="body"><h3>星轨回响</h3><p>科幻机甲 · 连载中</p><div class="tagrow"><em>科幻</em><em>剧情向</em></div></div>
+        </article>
+        <article class="card" data-cat="奇幻" data-name="雾海旅人 奇幻冒险">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#eef7f2"/><path d="M0 150c60-40 110-10 160-40s100-30 160 10v80H0z" fill="#2fb9a8" opacity=".45"/><circle cx="250" cy="60" r="26" fill="#f0b429" opacity=".8"/><path d="M60 150l30-60 30 60z" fill="#4a8f80" opacity=".7"/></svg>
+          </div>
+          <div class="body"><h3>雾海旅人</h3><p>奇幻冒险 · 连载中</p><div class="tagrow"><em>奇幻</em><em>冒险</em></div></div>
+        </article>
+        <article class="card" data-cat="日常" data-name="午后三点的信 日常校园">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#fff5f7"/><rect x="40" y="50" width="110" height="80" rx="8" fill="#ff9db3" opacity=".7"/><rect x="180" y="80" width="100" height="70" rx="8" fill="#ffd166" opacity=".75"/><circle cx="250" cy="55" r="16" fill="#ff6b8b" opacity=".7"/></svg>
+          </div>
+          <div class="body"><h3>午后三点的信</h3><p>校园日常 · 单集独立</p><div class="tagrow"><em>日常</em><em>治愈</em></div></div>
+        </article>
+        <article class="card" data-cat="悬疑" data-name="第七号档案 悬疑推理">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#eef0f7"/><rect x="70" y="40" width="180" height="120" rx="10" fill="#3b4060" opacity=".85"/><path d="M110 100h100M110 120h70" stroke="#f7f7fb" stroke-width="6" stroke-linecap="round"/><circle cx="230" cy="60" r="10" fill="#ff6b8b"/></svg>
+          </div>
+          <div class="body"><h3>第七号档案</h3><p>悬疑推理 · 连载中</p><div class="tagrow"><em>悬疑</em><em>推理</em></div></div>
+        </article>
+        <article class="card" data-cat="运动" data-name="逆风起跑 热血运动">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#fdf6e8"/><path d="M40 160l60-100 60 100z" fill="#f0b429" opacity=".7"/><path d="M140 160l60-100 60 100z" fill="#ff6b8b" opacity=".6"/><circle cx="260" cy="50" r="18" fill="#2fb9a8" opacity=".7"/></svg>
+          </div>
+          <div class="body"><h3>逆风起跑</h3><p>热血运动 · 连载中</p><div class="tagrow"><em>运动</em><em>热血</em></div></div>
+        </article>
+        <article class="card" data-cat="科幻" data-name="静默轨道 科幻">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#e9f1fb"/><ellipse cx="160" cy="100" rx="110" ry="40" fill="none" stroke="#5a6bd8" stroke-width="4" opacity=".6"/><circle cx="160" cy="100" r="34" fill="#3b4a8c" opacity=".8"/><circle cx="250" cy="60" r="10" fill="#2fb9a8"/></svg>
+          </div>
+          <div class="body"><h3>静默轨道</h3><p>科幻 · 完结</p><div class="tagrow"><em>科幻</em><em>短篇</em></div></div>
+        </article>
+        <article class="card" data-cat="日常" data-name="夏末的便利店 日常治愈">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#f4fff9"/><rect x="50" y="70" width="220" height="90" rx="10" fill="#2fb9a8" opacity=".35"/><rect x="80" y="95" width="40" height="40" rx="4" fill="#f0b429" opacity=".8"/><rect x="140" y="95" width="40" height="40" rx="4" fill="#ff6b8b" opacity=".7"/><rect x="200" y="95" width="40" height="40" rx="4" fill="#5a6bd8" opacity=".6"/></svg>
+          </div>
+          <div class="body"><h3>夏末的便利店</h3><p>日常治愈 · 连载中</p><div class="tagrow"><em>日常</em><em>治愈</em></div></div>
+        </article>
+        <article class="card" data-cat="奇幻" data-name="古书店的守夜人 奇幻">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#f6f0ff"/><rect x="70" y="60" width="80" height="100" rx="6" fill="#7b5ea8" opacity=".6"/><rect x="170" y="80" width="80" height="80" rx="6" fill="#ff9db3" opacity=".6"/><circle cx="250" cy="50" r="14" fill="#f0b429" opacity=".8"/></svg>
+          </div>
+          <div class="body"><h3>古书店的守夜人</h3><p>奇幻 · 连载中</p><div class="tagrow"><em>奇幻</em><em>设定向</em></div></div>
+        </article>
+      </div>
+      <p class="empty" id="empty" hidden>没有匹配的作品，换个关键词或切换题材试试。</p>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section id="guide" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Guide</span>
+        <h2>观看指南：三步找到想看的动画</h2>
+        <p>第一次来到动漫官网首页时，不必从长篇列表开始。按下面三步走，先确定题材，再看更新节奏，最后核对观看顺序。</p>
+      </div>
+      <div class="guide">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>先选题材</h3>
+          <p>在分类索引中点击科幻、奇幻、日常、悬疑或运动，缩小范围后再看简介与标签，判断是否符合自己的口味。</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>再看更新节奏</h3>
+          <p>连载中作品适合追更，完结作品适合一次看完。更新看板标注了播出日与集数，可据此安排观看时间。</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>核对观看顺序</h3>
+          <p>剧情向作品建议按集数顺序观看；单集独立的日常作品可从任意一集进入，补看压力更小。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>把追番清单留在这里</h2>
+          <p>动漫官网首页持续汇总新番更新与分类索引。你可以先收藏本页，下次直接查看更新看板与本周焦点，再决定从哪部作品开始。</p>
+        </div>
+        <a class="btn" href="#updates">回到更新看板</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" style="width:32px;height:32px;">
+            <rect width="64" height="64" rx="14" fill="#ff6b8b"/>
+            <circle cx="32" cy="30" r="13" fill="none" stroke="#fff" stroke-width="4"/>
+            <circle cx="27" cy="28" r="2.6" fill="#ffd166"/>
+            <circle cx="37" cy="28" r="2.6" fill="#ffd166"/>
+            <path d="M26 37c4 3 8 3 12 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          动漫官网首页
+        </div>
+        <p>动漫官网首页是面向动画爱好者的信息页，汇集新番更新、本周焦点、番剧分类索引与观看指南，帮助访客用更短的时间找到下一部想看的作品。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#updates">新番更新看板</a></li>
+          <li><a href="#spotlight">本周焦点排行</a></li>
+          <li><a href="#catalog">番剧分类索引</a></li>
+          <li><a href="#guide">观看指南</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>说明</h4>
+        <ul>
+          <li>更新与排行基于站内页面记录</li>
+          <li>播出安排以官方渠道为准</li>
+          <li>分类标签为编辑整理</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 动漫官网首页 · 动画信息与分类索引</span>
+      <span>内容仅供浏览参考</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var grid = document.getElementById('grid');
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  var empty = document.getElementById('empty');
+  var input = document.getElementById('q');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.fbtn'));
+  var activeCat = 'all';
+
+  function render(){
+    var kw = input.value.trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var catOk = activeCat === 'all' || c.getAttribute('data-cat') === activeCat;
+      var textOk = !kw || c.getAttribute('data-name').toLowerCase().indexOf(kw) > -1;
+      var ok = catOk && textOk;
+      c.style.display = ok ? '' : 'none';
+      if(ok) shown++;
+    });
+    empty.hidden = shown > 0;
+  }
+
+  input.addEventListener('input', render);
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      activeCat = b.getAttribute('data-cat');
+      render();
+    });
+  });
+})();
+</script>
+</body>
+          </html>
